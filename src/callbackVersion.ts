@@ -1,22 +1,26 @@
 import https from "https";
 
-// 1. Function to fetch data using callbacks
-function fetchData(url: string, callback: (error: Error | null, data?: any) => void) {
+// Function to fetch data using callbacks
+function fetchInfo(url: string, callback: (error: Error | null, data?: any) => void): void {
   https
     .get(url, (res) => {
-      let data = "";
+      let info = "";
 
       res.on("data", (chunk) => {
-        data += chunk;
+        info += chunk;
       });
 
       res.on("end", () => {
         try {
-          const json = JSON.parse(data);
+          const json = JSON.parse(info);
           callback(null, json);
         } catch (err) {
           callback(err as Error);
         }
+      });
+
+      res.on("error", (err) => {
+        callback(err);
       });
     })
     .on("error", (err) => {
@@ -24,42 +28,44 @@ function fetchData(url: string, callback: (error: Error | null, data?: any) => v
     });
 }
 
-// 2. Function to get weather
+// Function to get weather
 function getWeather(callback: (error: Error | null, data?: any) => void) {
-  const url = "https://api.open-meteo.com/v1/forecast?latitude=-26.2041&longitude=28.0473&current_weather=true";
-  fetchData(url, callback);
+  const url =
+    "https://api.open-meteo.com/v1/forecast?latitude=-26.2041&longitude=28.0473&current_weather=true";
+  fetchInfo(url, callback);
 }
 
-// 3. Function to get news
+// Function to get news
 function getNews(callback: (error: Error | null, data?: any) => void) {
   const url = "https://dummyjson.com/posts?limit=5";
-  fetchData(url, callback);
+  fetchInfo(url, callback);
 }
 
-// 4. Use callback hell: first get weather, then get news
+// Just to update the user on what is happening
 console.log("Getting weather and news using callbacks...");
 
-getWeather((weatherError, weatherData) => {
+// Callback hell starts here
+getWeather((weatherError, weatherInfo) => {
   if (weatherError) {
-    console.error("Error getting weather:", weatherError.message);
+    console.log("Couldn't find the weather data");
     return;
+  } else {
+    console.log("Weather data received");
   }
-
-  console.log(" Weather received!");
 
   getNews((newsError, newsData) => {
     if (newsError) {
-      console.error("Error getting news:", newsError.message);
+      console.log("Couldn't get the news");
       return;
+    } else {
+      console.log("News received!");
+      console.log("\nWeather:");
+      console.log(weatherInfo.current_weather);
+
+      console.log("\nLatest News:");
+      newsData.posts.forEach((post: any, index: number) => {
+        console.log(`${index + 1}. ${post.title}`);
+      });
     }
-
-    console.log(" News received!");
-    console.log("\n Weather:");
-    console.log(weatherData.current_weather);
-
-    console.log("\Latest News:");
-    newsData.posts.forEach((post: any, index: number) => {
-      console.log(`${index + 1}. ${post.title}`);
-    });
   });
 });
