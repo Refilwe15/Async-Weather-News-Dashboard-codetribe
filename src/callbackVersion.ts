@@ -1,4 +1,4 @@
-import https from "https";
+import * as https from "https";
 
 // Function to fetch data using callbacks
 function fetchInfo(url: string, callback: (error: Error | null, data?: any) => void): void {
