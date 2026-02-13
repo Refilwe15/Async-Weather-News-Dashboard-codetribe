@@ -23,4 +23,45 @@ It is part of a learning project for understanding **JavaScript concurrency**, *
 
 ---
 
-## Project Structure
+## HOW TO RUN THE PROJECT
+
+**Clone Repository**
+
+- git clone https://github.com/Refilwe15/Async-Weather-News-Dashboard-codetribe.git
+
+- cd Async-Weather-News-Dashboard-codetribe
+
+**Install Dependencies**
+
+- npm install
+
+
+**Promise Version**
+
+- node src/promiseVersion.js
+
+**Callback Version**
+
+- node src/callbackVersion.js
+
+**Async Version**
+
+- node src/asyncAwaitVersion.js
+
+## PROJECT STRUCTURE
+
+Async-Weather-News-Dashboard-codetribe/
+│
+├── node_modules/
+├── src/
+│   ├── asyncAwaitVersion.ts
+│   ├── asyncAwaitVersion.js
+│   ├── callbackVersion.ts
+│   ├── callbackVersion.js
+│   ├── promiseVersion.ts
+│   └── promiseVersion.js
+│
+├── package.json
+├── package-lock.json
+├── tsconfig.json
+└── README.md
