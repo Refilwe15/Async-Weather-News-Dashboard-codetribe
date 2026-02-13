@@ -30,10 +30,10 @@ export async function getWeatherAndNews() {
       fetchJSON(newsURL),
     ]);
 
-    console.log("\n🌦 Weather Data:");
+    console.log("\n Weather Data:");
     console.log(weather.current_weather);
 
-    console.log("\n🗞 Latest News:");
+    console.log("\n Latest News:");
     console.log(news.posts.slice(0, 3));
 
   } catch (error) {

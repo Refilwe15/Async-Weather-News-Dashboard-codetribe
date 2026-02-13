@@ -38,7 +38,7 @@ It is part of a learning project for understanding **JavaScript concurrency**, *
 
 **Promise Version**
 
-- node src/promiseVersion.js
+- node dist/promiseVersion.js
 
 **Callback Version**
 
@@ -46,7 +46,7 @@ It is part of a learning project for understanding **JavaScript concurrency**, *
 
 **Async Version**
 
-- node src/asyncAwaitVersion.js
+- node dist/asyncAwaitVersion.js
 
 ## PROJECT STRUCTURE
 
