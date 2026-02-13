@@ -34,6 +34,7 @@ It is part of a learning project for understanding **JavaScript concurrency**, *
 **Install Dependencies**
 
 - npm install
+- npx tsc
 
 
 **Promise Version**
