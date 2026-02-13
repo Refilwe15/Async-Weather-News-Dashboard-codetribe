@@ -42,7 +42,7 @@ It is part of a learning project for understanding **JavaScript concurrency**, *
 
 **Callback Version**
 
-- node src/callbackVersion.js
+- node dist/callbackVersion.js
 
 **Async Version**
 

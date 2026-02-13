@@ -1,12 +1,12 @@
-import * as https from "https";
+const https = require("https");
 
 // Fetch data using callbacks
 function fetchInfo(url: string, callback: (error: Error | null, data?: any) => void): void {
   https
-    .get(url, (res) => {
+    .get(url, (res: any) => {
       let info = "";
 
-      res.on("data", (chunk) => (info += chunk));
+      res.on("data", (chunk: any) => (info += chunk));
 
       res.on("end", () => {
         try {
@@ -17,7 +17,7 @@ function fetchInfo(url: string, callback: (error: Error | null, data?: any) => v
         }
       });
     })
-    .on("error", (err) => callback(err));
+    .on("error", (err: Error) => callback(err));
 }
 
 // Weather fetch
@@ -35,7 +35,7 @@ function getNews(callback: (error: Error | null, data?: any) => void) {
 
 console.log("Getting weather and news using callbacks...");
 
-// Callback hell demo
+// Callback demo
 getWeather((weatherError, weatherInfo) => {
   if (weatherError) return console.log("Couldn't get the weather data.");
   console.log("Weather data received!");
